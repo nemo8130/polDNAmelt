@@ -1,0 +1,145 @@
+INSTRUCTIONS AND EXAMPLES OF poldnamelt standalone version
+
+The web-server is available at: http://www.saha.ac.in/biop/www/db/local/nsdnamelt.html
+The article is download-able from: http://www.saha.ac.in/biop/www/db/local/polDNAmelt-jbic.pdf
+
+PERL (v.8.5 or higher) must be pre-installed
+Then DO:
+
+dos2unix newsdnamelt_standalone.pl
+chmod +x newsdnamelt_standalone.pl
+
+Usage:  ./newsdnamelt_standalone.pl > out.html  
+
+Then, the redirected output, 'out.html' could be viewed by a browser like a web output (Also in an ofline mode, Locally) 
+
+(See the example out.html provided with this distribution)
+
+Essentials: 
+
+THE INPUT SCRIPT FILE 'poldnamelt.input' MUST BE PRESENT IN THE CURRENT DIRECTORY.
+
+STRUCTURE OF THE INPUT SCRIPT FILE (poldnamelt.input) MUST NOT BE PERTURBED. 
+ONLY THE PARAMETERS SHOULD BE ALTERED. 
+
+STRUCTURE (Example) OF poldnamelt.input: (See the example provided with this distribution)
+
+============================================================================================================================================
+choice='dirseq'
+filename='aranew.fasta'
+dnaseq='GCGCGCGCTGCGCGCGCGCGCGC  GCGCTGC  GCGCGCGCGCGatatcgtacgttatataCGCGCTGCGCGCGC  GCGCGCGCGCTGCtgcagtGCGCGCGCGCGCGCGCT  GCGCGCGCGnnNNCGCGCGCGCTGCG'
+tag='test'
+tparam='santa'
+window=10
+overlap=0
+Temp=37
+Na=0.165
+K=0.00
+NH4=0.00
+Mg=0.01
+============================================================================================================================================
+
+
+Options: 
+
+choice:   dirseq / fasta
+filename: Filename in fasta Format with an extension .fasta  (aranew.fasta and sample.fasta provided as examples with this distributions)
+tag:      any string of your choice
+tparam:   santa / bresl
+window:   window_size (must not exceed the total input sequence length
+overlap:  overlap
+Temp:     Temperature in K 
+Na:       Concentration of [Na+] in Mols / Lit
+K:        Concentration of [K+] in Mols / Lit
+NH4:      Concentration of [NH4+] in Mols / Lit
+Mg:       Concentration of [Mg+2] in Mols / Lit
+
+
+For choice=fasta, The program reads the input sequence from the filename (*.fasta) specified in the input script.
+In case, nothing specified as the filename (in spite of the setting: choice=fasta), it searches for the file 'sample.fasta' in the current directory
+and if not found, it exits.
+
+See the example input (aranew.fasta) provided with this distribution
+
+The input (DNA) sequence, should, in principle, contain only A, T, G and/or C's (case insensitive) but might contain whitespaces and N (or n's) 's but essentially no alphanumeric characters or digits. 
+See the example provided in the input script file. 
+
+OUTPUT FILES WILL BE WRITTEN IN out.poldnamelt (See the example provided with this distribution)
+
+Example Output: 
+
+>>Thermodynamic Parameters:
+
+       wseq_num        delta_H0        delta_S0     delta_G0(T)    delta_G0(37)       Tm_St_Mon  Tm_St_Mon_Mg+2          Tm_%GC
+         wseq:1         -87.300        -230.194         -15.908         -15.941         106.096         100.349          49.237
+         wseq:2         -92.200        -240.894         -17.489         -17.551         109.591         102.540          53.337
+         wseq:3         -87.300        -230.194         -15.908         -15.941         106.096         100.349          49.237
+         wseq:4         -91.400        -238.094         -17.558         -17.621         110.732         103.480          53.337
+         wseq:5         -72.600        -207.094          -8.373          -8.311          77.416          79.226          28.737
+         wseq:6         -71.300        -206.194          -7.352          -7.291          72.641          75.416          24.637
+         wseq:7         -87.300        -230.194         -15.908         -15.941         106.096         100.349          49.237
+         wseq:8         -91.400        -238.094         -17.558         -17.621         110.732         103.480          53.337
+         wseq:9         -78.300        -211.594         -12.677         -12.651          96.899          94.226          41.037
+        wseq:10         -90.100        -236.394         -16.785         -16.831         107.994         101.510          49.237
+        wseq:11         -87.300        -230.194         -15.908         -15.941         106.096         100.349          49.237
+        wseq:12         -91.400        -238.094         -17.558         -17.621         110.732         103.480          53.337
+        wseq:13         -87.300        -230.194         -15.908         -15.941         106.096         100.349          49.237
+
+
+>>Window Sequences:
+
+         wseq:1  GCGCGCGCTG  10
+         wseq:2  CGCGCGCGCG  10
+         wseq:3  CGCGCGCTGC  10
+         wseq:4  GCGCGCGCGC  10
+         wseq:5  GATATCGTAC  10
+         wseq:6  GTTATATACG  10
+         wseq:7  CGCTGCGCGC  10
+         wseq:8  GCGCGCGCGC  10
+         wseq:9  GCTGCTGCAG  10
+        wseq:10  TGCGCGCGCG  10
+        wseq:11  CGCGCGCTGC  10
+        wseq:12  GCGCGCGCGC  10
+        wseq:13  GCGCGCTGCG  10
+
+
+>>Global Minima:
+
+wseq:6 (Tm =   75.416 deg C; delG0(37) =   -7.291 Kcal/mol)
+
+
+>>Local Minima:
+
+       wseq_num               Tm_st(deg C)            delG0(37) (Kcal/mol)
+         wseq:1                    100.349                         -15.941
+         wseq:3                    100.349                         -15.941
+         wseq:9                     94.226                         -12.651
+        wseq:11                    100.349                         -15.941
+        wseq:13                    100.349                         -15.941
+
+==================================================================================================================================================================
+
+where,
+
+the HEADERS means the following in Table 1: 
+
+wseq_num:                   Window_sequence_number
+delta_H0:                   Transition Enthalpy
+delta_S0:                   Transition Entropy 
+delta_G0(T):                Free energy change at the user defined tempterature 
+delta_G0(37):               Free energy change at 37 deg C
+Tm_St_Mon:                  Melting Temperature (Calculated by Nearest Neighbor Stacking method at given concentration of Monovalent ions)
+Tm_St_Mon_Mg+2:             Melting Temperature (Calculated by Nearest Neighbor Stacking method at given concentration of Monovalent and Mg+2 ions)
+Tm_%GC:                     Melting Temperature (Calculated by %GC method) 
+
+
+Please cite: 
+
+polDNAmelt: Local Melting Within Polymeric DNA—An Improved Method and Its Applications. 
+Sankar Basu and Dhananjay Bhattacharyya* 
+Journal of Bioinformatics and Intelegent Controll 2013, 2 (4): 316-320.  
+
+(http://www.ingentaconnect.com/content/asp/jbic/2013/00000002/00000004/art00009)
+
+
+

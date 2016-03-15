@@ -1,0 +1,12 @@
+choice='fasta'
+filename='aranew.fasta'
+dnaseq='GCGCGCGCTGCGCGCGCGCGCGC  GCGCTGC  GCGCGCGCGCGatatcgtacgttatataCGCGCTGCGCGCGC  GCGCGCGCGCTGCtgcagtGCGCGCGCGCGCGCGCT  GCGCGCGCGnnNNCGCGCGCGCTGCG'
+tag='test'
+tparam='santa'
+window=10
+overlap=0
+Temp=37
+Na=0.165
+K=0.00
+NH4=0.00
+Mg=0.01
